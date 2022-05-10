@@ -73,6 +73,8 @@ jobs:
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Create Local Lane
         run: bit lane create $LANE_NAME
       - name: Install and Compile
