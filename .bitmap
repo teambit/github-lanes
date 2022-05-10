@@ -10,87 +10,47 @@
 
 {
     "button": {
-        "scope": "",
-        "version": "",
+        "scope": "teambit.github-lanes",
+        "version": "latest",
         "mainFile": "index.ts",
         "rootDir": "my-scope/button",
-        "config": {
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.react/react": {},
-            "teambit.compilation/compiler": {},
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.dependencies/dependency-resolver": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/forking": {
-                "forkedFrom": {
-                    "scope": "teambit.community",
-                    "name": "button",
-                    "version": "0.0.1"
-                }
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/components-development",
+                "version": "f0e50bc01224f80c055e6481ab49b51de173395f"
             }
-        }
+        ]
     },
     "entity/images": {
-        "scope": "",
-        "version": "",
+        "scope": "teambit.github-lanes",
+        "version": "latest",
         "mainFile": "index.ts",
         "rootDir": "my-scope/entity/images",
-        "config": {
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "devDependencies": {
-                        "@teambit/design.embeds.figma": "0.0.6"
-                    }
-                }
-            },
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.envs/envs": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/forking": {
-                "forkedFrom": {
-                    "scope": "teambit.community",
-                    "name": "entity/images",
-                    "version": "1.95.10"
-                }
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/components-development",
+                "version": "befadf42a396259f7b34391822e4c0dd2e6f9c56"
             }
-        }
+        ]
     },
     "ui/label": {
-        "scope": "",
-        "version": "",
+        "scope": "teambit.github-lanes",
+        "version": "latest",
         "mainFile": "index.ts",
         "rootDir": "my-scope/ui/label",
-        "config": {
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "devDependencies": {
-                        "@teambit/legacy": "-"
-                    }
-                }
-            },
-            "teambit.react/react": {},
-            "teambit.harmony/node": {},
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/forking": {
-                "forkedFrom": {
-                    "scope": "teambit.design",
-                    "name": "ui/label",
-                    "version": "0.0.348"
-                }
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/components-development",
+                "version": "767e52a2853f8a59011ecfe855b32f1d977f6d1f"
             }
-        }
+        ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "components-development",
+        "scope": "teambit.github-lanes"
+    }
 }
