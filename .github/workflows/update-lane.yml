@@ -56,6 +56,7 @@ jobs:
     env:
       LANE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}  
       LANE_ARTIFACT_FILE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+      SCOPE_JSON_ARTIFACT: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope_json
 
     outputs:
       lane_scope: ${{ steps.lane_artifact.outputs.scope }}
@@ -76,6 +77,15 @@ jobs:
       - name: Display Lane Scope
         run: echo ${{ steps.lane_artifact.outputs.scope }}
 
+      - name: Display Lane Scope JSON
+        run: tail -n +2 $LANE_ARTIFACT_FILE_NAME > scope.json
+
+      - name: Upload scope.json as an artifact for the next job
+        uses: actions/upload-artifact@v3
+        with:
+          name: scope_json
+          path: scope.json
+
   update_and_export_lane:
     name: update and export lane
 
@@ -87,6 +97,7 @@ jobs:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       LANE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }} 
       SCOPE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope }}
+      SCOPE_JSON_ARTIFACT: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }}_scope_json
 
     if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
 
@@ -109,6 +120,14 @@ jobs:
           ref: ${{ github.ref_name }}
       - name: Display Bitmap
         run: cat .bitmap
+      - uses: actions/download-artifact@v3
+        with:
+          name: scope_json
+          path: scope.json
+      - name: Update Local scope.json
+        run: mv scope.json .git/bit/
+      - name: Display scope.json
+        run: cat .git/bit/scope.json
       - name: Re init Workspace
         run: bit init
       - name: Lane Status
