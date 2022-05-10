@@ -56,7 +56,6 @@ jobs:
     env:
       LANE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}  
       LANE_ARTIFACT_FILE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
-      SCOPE_JSON_ARTIFACT: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope_json
 
     outputs:
       lane_scope: ${{ steps.lane_artifact.outputs.scope }}
@@ -77,15 +76,6 @@ jobs:
       - name: Display Lane Scope
         run: echo ${{ steps.lane_artifact.outputs.scope }}
 
-      - name: Display Lane Scope JSON
-        run: tail -n +2 $LANE_ARTIFACT_FILE_NAME > scope.json
-
-      - name: Upload scope.json as an artifact for the next job
-        uses: actions/upload-artifact@v3
-        with:
-          name: scope_json
-          path: scope.json
-
   update_and_export_lane:
     name: update and export lane
 
@@ -97,7 +87,6 @@ jobs:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       LANE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }} 
       SCOPE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope }}
-      SCOPE_JSON_ARTIFACT: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }}_scope_json
 
     if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
 
@@ -118,22 +107,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: scope_json
-      #     path: scope.json
-      # - name: Update Local scope.json
-      #   run: mv scope.json .git/bit/
-      # - name: Display scope.json
-      #   run: cat .git/bit/scope.json
-      # - name: Re init Bit
-      #   run: bit init
       - name: Import Existing Lane
         run: bit import
       - name: Install and Compile 
         run: bit install && bit compile
-      # - name: Current Lane 
-      #   run: bit lane list --details
       - name: Snap All Components without building them
         run: BIT_FEATURES=build-on-ci bit snap
       - name: Export the Lane and the Components
