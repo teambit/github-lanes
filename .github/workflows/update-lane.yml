@@ -1,9 +1,9 @@
 name: Update Lane
 
 on: [push]
-  # push:
-    # branches:    
-    #   - components/*
+  push:
+    branches-ignore:    
+      - main
 
 jobs:
   setup_npm:

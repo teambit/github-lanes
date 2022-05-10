@@ -10,34 +10,16 @@
 
 {
     "button": {
-        "scope": "teambit.github-lanes",
-        "version": "latest",
+        "scope": "",
+        "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "my-scope/button",
-        "onLanesOnly": true,
-        "lanes": [
-            {
-                "remoteLane": "teambit.github-lanes/development",
-                "version": "105b0979125271ee9031f661b556826ba9c62ecb"
-            }
-        ]
+        "rootDir": "github-lanes/button"
     },
     "entity/images": {
-        "scope": "teambit.github-lanes",
-        "version": "latest",
+        "scope": "",
+        "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "my-scope/entity/images",
-        "onLanesOnly": true,
-        "lanes": [
-            {
-                "remoteLane": "teambit.github-lanes/development",
-                "version": "a77741a21c4dad8a74b1f653dd8490bdafb20d55"
-            }
-        ]
+        "rootDir": "github-lanes/entity/images"
     },
-    "$schema-version": "14.9.0",
-    "_bit_lane": {
-        "name": "development",
-        "scope": "teambit.github-lanes"
-    }
+    "$schema-version": "14.9.0"
 }
