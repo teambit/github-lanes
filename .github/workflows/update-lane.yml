@@ -1,6 +1,6 @@
 name: Update Lane
 
-on: [push]
+on:
   push:
     branches-ignore:    
       - main
