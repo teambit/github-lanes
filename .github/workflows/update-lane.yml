@@ -106,7 +106,7 @@ jobs:
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.ref_name }}
       - name: Import Existing Lane
         run: bit import
       - name: Install and Compile 
