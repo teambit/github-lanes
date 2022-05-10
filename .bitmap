@@ -13,13 +13,25 @@
         "scope": "",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/button"
+        "rootDir": "github-lanes/button",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
     },
     "entity/images": {
         "scope": "",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/entity/images"
+        "rootDir": "github-lanes/entity/images",
+        "config": {
+            "teambit.harmony/node": {},
+            "teambit.envs/envs": {
+                "env": "teambit.harmony/node"
+            }
+        }
     },
     "$schema-version": "14.9.0"
 }
