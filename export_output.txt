@@ -1,13 +1,4 @@
 - running command "export"...
 - loading components
-- exporting components
-- start processing the exported data
-- transferring 58 objects to the remote "teambit.github-lanes")
-- making sure the components objects can be merged safely
-- persisting object to remote teambit.github-lanes
-- all objects were persisted successfully!
-- updating data locally...
-exported the following 3 component(s) from lane components-development:
-teambit.github-lanes/button
-teambit.github-lanes/entity/images
-teambit.github-lanes/ui/label
+- exporting component
+nothing to export
