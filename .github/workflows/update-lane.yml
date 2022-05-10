@@ -130,7 +130,9 @@ jobs:
         run: bit import
       - name: Install and Compile 
         run: bit install && bit compile
-      - name: Snap All Components without building them
-        run: BIT_FEATURES=build-on-ci bit snap
-      - name: Export the Lane and the Components
-        run: bit export
+      - name: Current Lane 
+        run: bit lane list --details
+      # - name: Snap All Components without building them
+      #   run: BIT_FEATURES=build-on-ci bit snap
+      # - name: Export the Lane and the Components
+      #   run: bit export
