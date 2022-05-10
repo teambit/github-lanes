@@ -60,10 +60,10 @@
      * "*" is a special rule which applied on all components in the workspace.
      **/
     "my-scope/button": {
-      "teambit.react/react": { }
-    }, 
+      "teambit.react/react": {}
+    },
     "my-scope/entity": {
-      "teambit.harmony/node": { }
+      "teambit.harmony/node": {}
     }
   }
 }
