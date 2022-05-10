@@ -14,7 +14,7 @@ export function Single() {
 }
 
 export function List() {
-  const [state, setState] = useState('');
+  const [state, setState] = useState('react');
 
   return (
     <ThemeCompositions>

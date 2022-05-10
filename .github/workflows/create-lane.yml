@@ -41,7 +41,7 @@ jobs:
         with:
           pattern: "/"
           string: ${{ github.event.pull_request.head.ref }}
-          replace-with: "_"
+          replace-with: "-"
           flags: "g"
 
   export_lane:
@@ -78,15 +78,20 @@ jobs:
       - name: Install and Compile
         run: bit install && bit compile
       - name: Snap All Components without building them
-        run: BIT_FEATURES=build-on-ci bit snap
+        run: bit snap
       - name: Export the Lane and the Components
         run: bit export > export_output.txt
-      - name: Extract Remote Scope
-        run: grep -n "remote" export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
-      - name: Copy .git/bit/scope.json to Lane Artifact File
-        run: cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME
-      - name: Upload Lane Scope
-        uses: actions/upload-artifact@v3
+      # - name: Extract Remote Scope
+      #   run: grep -n "remote" export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
+      # - name: Copy .git/bit/scope.json to Lane Artifact File
+      #   run: cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME
+      # - name: Upload Lane Scope
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
+      #     path: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+      - name: Commit .bitmap changes to PR
+        uses: EndBug/add-and-commit@v9
         with:
-          name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
-          path: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+          push: true
+          message: 'update .bitmap'
