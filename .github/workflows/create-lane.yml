@@ -83,6 +83,8 @@ jobs:
         run: bit snap
       - name: Export the Lane and the Components
         run: bit export > export_output.txt
+      - name: Display bit export output
+        run: cat export_output.txt
       - name: Extract Remote Scope
         run: grep -n "remote" export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
       - name: Upload Lane Scope
