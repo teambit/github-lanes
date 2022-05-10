@@ -1,0 +1,105 @@
+name: Delete Lane
+
+on: [delete]
+
+jobs:
+  setup_npm:
+
+    name: setup npm
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    needs: [verify_lane_has_been_exported]  
+
+    if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+  extract_local_lane_name:
+
+    name: extract local lane name
+
+    runs-on: ubuntu-latest
+
+    outputs: 
+      extracted: ${{ steps.extract.outputs.replaced }}
+
+    steps:
+      - name: Replace illegal characters from head branch name
+        id: extract
+        uses: frabert/replace-string-action@v2.0
+        with:
+          pattern: '/'
+          string: ${{ github.ref_name }}
+          replace-with: '-'
+          flags: 'g'
+
+  verify_lane_has_been_exported:
+
+    name: verify lane has been exported
+
+    runs-on: ubuntu-latest
+
+    needs: [extract_local_lane_name]  
+
+    env:
+      LANE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}  
+      LANE_ARTIFACT_FILE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+
+    outputs:
+      lane_scope: ${{ steps.lane_artifact.outputs.scope }}
+      lane_name: ${{ needs.extract_local_lane_name.outputs.extracted }}
+
+    steps:
+      - name: Download Lane Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with: 
+          name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
+          workflow: create-lane.yml
+          check_artifacts: true
+      - id: lane_artifact
+        run: |
+          scopeName=$(head -1 $LANE_ARTIFACT_FILE_NAME);
+          echo ::set-output name=scope::$scopeName
+
+      - name: Display Lane Scope
+        run: echo ${{ steps.lane_artifact.outputs.scope }}
+
+  update_and_export_lane:
+    name: update and export lane
+
+    runs-on: ubuntu-latest
+
+    needs: [setup_npm, verify_lane_has_been_exported]
+
+    env:
+      BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
+      LANE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }} 
+      SCOPE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope }}
+
+    if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
+
+    steps:
+      - name: Install Bit Version Manager
+        run: npm i -g @teambit/bvm
+      - name: Install latest Bit version
+        run: bvm install
+      - name: add bvm bin folder to path
+        run: echo "$HOME/bin" >> $GITHUB_PATH
+      - name: Set up bit config
+        run: |
+          bit config set analytics_reporting false
+          bit config set anonymous_reporting false
+          bit config set user.token $BIT_TOKEN
+      - name: add bvm bin folder to path
+        run: echo "$HOME/bin" >> $GITHUB_PATH
+      - name: Delete Remote Lane
+        run: bit lane remove -r $SCOPE_NAME/$LANE_NAME -s
