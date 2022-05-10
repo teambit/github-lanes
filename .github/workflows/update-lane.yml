@@ -107,8 +107,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.ref_name }}
-      - name: Import Existing Lane
-        run: bit import
+      - name: Lane Status
+        run: bit lane list --details
+      - name: Bit Status
+        run: bit status
       - name: Install and Compile 
         run: bit install && bit compile
       - name: Snap All Components without building them
