@@ -10,56 +10,34 @@
 
 {
     "button": {
-        "scope": "",
-        "version": "",
+        "scope": "teambit.github-lanes",
+        "version": "latest",
         "mainFile": "index.ts",
         "rootDir": "my-scope/button",
-        "config": {
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.react/react": {},
-            "teambit.compilation/compiler": {},
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.dependencies/dependency-resolver": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/forking": {
-                "forkedFrom": {
-                    "scope": "teambit.community",
-                    "name": "button",
-                    "version": "0.0.1"
-                }
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/development",
+                "version": "105b0979125271ee9031f661b556826ba9c62ecb"
             }
-        }
+        ]
     },
     "entity/images": {
-        "scope": "",
-        "version": "",
+        "scope": "teambit.github-lanes",
+        "version": "latest",
         "mainFile": "index.ts",
         "rootDir": "my-scope/entity/images",
-        "config": {
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "devDependencies": {
-                        "@teambit/design.embeds.figma": "0.0.6"
-                    }
-                }
-            },
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.envs/envs": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/forking": {
-                "forkedFrom": {
-                    "scope": "teambit.community",
-                    "name": "entity/images",
-                    "version": "1.95.10"
-                }
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/development",
+                "version": "a77741a21c4dad8a74b1f653dd8490bdafb20d55"
             }
-        }
+        ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "development",
+        "scope": "teambit.github-lanes"
+    }
 }
