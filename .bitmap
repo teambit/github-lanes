@@ -23,6 +23,10 @@
             {
                 "remoteLane": "teambit.github-lanes/base-components",
                 "version": "bdd1caf49a8e945b9639c6f10bf6e75dcac701d6"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/button-docs-v2",
+                "version": "4509ec317ae4fe7da847e0dd2fdca51c04ec97d5"
             }
         ]
     },
@@ -41,7 +45,7 @@
     },
     "$schema-version": "14.9.0",
     "_bit_lane": {
-        "name": "base-components",
+        "name": "button-docs-v2",
         "scope": "teambit.github-lanes"
     }
 }
