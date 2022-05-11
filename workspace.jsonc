@@ -39,7 +39,17 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
-        "@teambit/design.embeds.figma": "0.0.6"
+        "@teambit/base-ui.utils.time-ago": "1.0.0",
+        "@teambit/design.embeds.figma": "0.0.6",
+        "@teambit/documenter.theme.theme-compositions": "4.1.1",
+        "@teambit/documenter.ui.heading": "4.1.1",
+        "@teambit/documenter.ui.paragraph": "4.1.1",
+        "@teambit/documenter.ui.section": "4.1.1",
+        "@teambit/documenter.ui.separator": "4.1.1",
+        "@testing-library/react": "11.2.6",
+        "@types/classnames": "2.2.11",
+        "classnames": "2.2.6",
+        "react-test-renderer": "16.14.0"
       },
       "peerDependencies": {
         "@testing-library/react": "^12.1.5",
