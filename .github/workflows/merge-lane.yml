@@ -108,6 +108,9 @@ jobs:
           bit config set user.token $BIT_TOKEN
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Initialize Bit repo
         run: bit init
       - name: Setup upterm session
