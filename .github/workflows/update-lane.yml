@@ -128,6 +128,8 @@ jobs:
         run: bit init
       - name: Update Local scope.json
         run: rm .git/bit/scope.json && mv scope.json .git/bit/
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
       - name: Display scope.json
         run: cat .git/bit/scope.json
       - name: Lane Status
