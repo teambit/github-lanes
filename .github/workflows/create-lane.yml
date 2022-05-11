@@ -94,6 +94,8 @@ jobs:
         with:
           name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
           path: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+      - name: Cleanup
+        run: rm ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt export_output.txt
       - name: Commit .bitmap changes to PR
         uses: EndBug/add-and-commit@v9
         with:
