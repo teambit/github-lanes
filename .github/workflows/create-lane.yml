@@ -56,7 +56,7 @@ jobs:
     env:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       LANE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}
-      LANE_ARTIFACT_FILE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
+      LANE_ARTIFACT_FILE_NAME: .git/${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
 
     steps:
       - name: Install Bit Version Manager
@@ -82,20 +82,18 @@ jobs:
       - name: Snap All Components without building them
         run: bit snap
       - name: Export the Lane and the Components
-        run: bit export > export_output.txt
+        run: bit export > .git/export_output.txt
       - name: Display bit export output
-        run: cat export_output.txt
+        run: cat .git/export_output.txt
       - name: Extract Remote Scope
-        run: grep -n "remote" export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
+        run: grep -n "remote" .git/export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
       - name: Copy .git/bit/scope.json to Lane Artifact File
-        run: cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME
+        run: [ -s $LANE_ARTIFACT_FILE_NAME ] && cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME
       - name: Upload Lane Scope
         uses: actions/upload-artifact@v3
         with:
           name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
           path: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
-      - name: Cleanup
-        run: rm ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt export_output.txt
       - name: Commit .bitmap changes to PR
         uses: EndBug/add-and-commit@v9
         with:
