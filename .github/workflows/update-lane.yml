@@ -126,6 +126,8 @@ jobs:
           path: scope.json
       - name: Re init Workspace
         run: bit init
+      - name: Display scope json downloaded
+        run: cat scope.json || ls scope.json
       - name: Update Local scope.json
         run: rm .git/bit/scope.json && mv scope.json .git/bit
       # - name: Setup upterm session
