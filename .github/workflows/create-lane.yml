@@ -88,7 +88,7 @@ jobs:
       - name: Extract Remote Scope
         run: grep -n "remote" .git/export_output.txt | tail -1 | awk '{print $NF}' > $LANE_ARTIFACT_FILE_NAME
       - name: Copy .git/bit/scope.json to Lane Artifact File
-        run: [ -s $LANE_ARTIFACT_FILE_NAME ] && cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME
+        run: if [[ -s $LANE_ARTIFACT_FILE_NAME ]]; then cat .git/bit/scope.json >> $LANE_ARTIFACT_FILE_NAME; fi
       - name: Upload Lane Scope
         uses: actions/upload-artifact@v3
         with:
