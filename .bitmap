@@ -26,7 +26,11 @@
             },
             {
                 "remoteLane": "teambit.github-lanes/button-docs-v2",
-                "version": "4509ec317ae4fe7da847e0dd2fdca51c04ec97d5"
+                "version": "2dcf8eb9d99b8adead6102ac6310478d9d078f6b"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/button-docs-v2",
+                "version": "2dcf8eb9d99b8adead6102ac6310478d9d078f6b"
             }
         ]
     },
