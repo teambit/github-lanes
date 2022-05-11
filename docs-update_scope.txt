@@ -1,0 +1,16 @@
+teambit.github-lanes
+{
+    "name": "github-lanes",
+    "remotes": {},
+    "version": "1.0.262",
+    "lanes": {
+        "current": "docs-update",
+        "tracking": [
+            {
+                "localLane": "docs-update",
+                "remoteLane": "docs-update",
+                "remoteScope": "teambit.github-lanes"
+            }
+        ]
+    }
+}

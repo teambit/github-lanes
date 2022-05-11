@@ -10,16 +10,34 @@
 
 {
     "button": {
-        "scope": "",
+        "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/button"
+        "rootDir": "github-lanes/button",
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/docs-update",
+                "version": "91f7cd3cff0ecd18441f87a3dbedd22cdf08e018"
+            }
+        ]
     },
     "entity/images": {
-        "scope": "",
+        "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/entity/images"
+        "rootDir": "github-lanes/entity/images",
+        "onLanesOnly": true,
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/docs-update",
+                "version": "d57b8e7a30a18af67ba0e50e978d26a2a3b8c242"
+            }
+        ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "docs-update",
+        "scope": "teambit.github-lanes"
+    }
 }

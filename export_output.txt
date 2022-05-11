@@ -7,6 +7,6 @@
 - persisting object to remote teambit.github-lanes
 - all objects were persisted successfully!
 - updating data locally...
-exported the following 2 component(s) from lane development:
+exported the following 2 component(s) from lane docs-update:
 teambit.github-lanes/button
 teambit.github-lanes/entity/images

@@ -59,11 +59,11 @@
     /**
      * "*" is a special rule which applied on all components in the workspace.
      **/
-    "*": {
-      /**
-       * uncomment to apply the chosen environment on all components.
-       **/
-      // "teambit.react/react": { }
+    "my-scope/button": {
+      "teambit.react/react": {}
+    },
+    "my-scope/entity": {
+      "teambit.harmony/node": {}
     }
   }
 }

@@ -123,17 +123,19 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: scope_json
-          path: scope.json
-      - name: Update Local scope.json
-        run: mv scope.json .git/bit/
-      - name: Display scope.json
-        run: cat .git/bit/scope.json
+          path: .
       - name: Re init Workspace
         run: bit init
+      - name: Display scope json downloaded
+        run: cat scope.json || ls scope.json
+      - name: Update Local scope.json
+        run: rm .git/bit/scope.json && mv scope.json .git/bit
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
+      - name: Display scope.json
+        run: cat .git/bit/scope.json
       - name: Lane Status
         run: bit lane list --details
-      - name: Bit Status
-        run: bit status
       - name: Install and Compile 
         run: bit install && bit compile
       - name: Snap All Components without building them
