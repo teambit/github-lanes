@@ -110,6 +110,8 @@ jobs:
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - name: Initialize Bit repo
         run: bit init
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
       - name: Import all components from Main
         run: bit import "$SCOPE_NAME/*"
       - name: Install and Compile
