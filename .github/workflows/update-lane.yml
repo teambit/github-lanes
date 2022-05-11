@@ -127,7 +127,7 @@ jobs:
       - name: Re init Workspace
         run: bit init
       - name: Update Local scope.json
-        run: mv scope.json .git/bit/
+        run:  rm .git/bit/scope.json && mv scope.json .git/bit/
       - name: Display scope.json
         run: cat .git/bit/scope.json
       - name: Lane Status
