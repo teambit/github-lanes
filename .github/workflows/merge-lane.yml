@@ -79,6 +79,15 @@ jobs:
 
       - name: Display Lane Scope
         run: echo ${{ steps.lane_artifact.outputs.scope }}
+
+      - name: Display Lane Scope JSON
+        run: tail -n +2 $LANE_ARTIFACT_FILE_NAME > scope.json
+
+      - name: Upload scope.json as an artifact for the next job
+        uses: actions/upload-artifact@v3
+        with:
+          name: scope_json
+          path: scope.json
       
   merge_and_export_lane:
     name: merge and export lane
@@ -110,14 +119,33 @@ jobs:
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: main
+      - uses: actions/download-artifact@v3
+        with:
+          name: scope_json
+          path: .
       - name: Initialize Bit repo
         run: bit init
-      - name: Switch to Remote Lane
-        run: bit lane switch $SCOPE_NAME/$LANE_NAME
-      - name: Switch to Main Lane
+      - name: Update Local scope.json
+        run: rm .git/bit/scope.json && mv scope.json .git/bit
+      - name: Display scope.json
+        run: cat .git/bit/scope.json
+      - name: Display bitmap
+        run: cat .bitmap
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
+      - name: Import from Remote Lane
+        run: bit import
+      - name: Switch to Main Lane and checkout latest
         run: bit lane switch main
-      - name: Merge $LANE_NAME to Main
-        run: bit lane merge $LANE_NAME
+      - name: Merge Lane to Main
+        run: bit lane merge $SCOPE_NAME/$LANE_NAME
+      - name: Tag all Compomnents
+        run: bit tag --patch
       - name: Export the Lane and the Components
         run: bit export
+      - name: Commit .bitmap changes to PR
+        uses: EndBug/add-and-commit@v9
+        with:
+          push: true
+          message: 'update .bitmap after merging'

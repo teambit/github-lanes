@@ -38,7 +38,7 @@ jobs:
         uses: frabert/replace-string-action@v2.0
         with:
           pattern: '/'
-          string: ${{ github.ref_name }}
+          string: ${{ github.event.ref }}
           replace-with: '-'
           flags: 'g'
 
@@ -102,4 +102,4 @@ jobs:
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - name: Delete Remote Lane
-        run: bit lane remove -r $SCOPE_NAME/$LANE_NAME -s
+        run: bit lane remove -r $SCOPE_NAME/$LANE_NAME -sf
