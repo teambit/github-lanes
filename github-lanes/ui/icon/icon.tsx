@@ -10,7 +10,7 @@ export type IconProps = {
 export function Icon({ children }: IconProps) {
   return (
     <div style={{ backgroundColor: "red" }}>
-      Hello from Icon!
+      Hello from Icon! and goodbye
       {children}
     </div>
   );
