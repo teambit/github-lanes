@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
 export type IconProps = {
   /**
@@ -9,7 +9,7 @@ export type IconProps = {
 
 export function Icon({ children }: IconProps) {
   return (
-    <div>
+    <div style={{ backgroundColor: "red" }}>
       Hello from Icon!
       {children}
     </div>
