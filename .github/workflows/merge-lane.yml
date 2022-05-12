@@ -126,21 +126,23 @@ jobs:
           path: .
       - name: Initialize Bit repo
         run: bit init
+      - name: Update from Main
+        run: bit import
       - name: Update Local scope.json
         run: rm .git/bit/scope.json && mv scope.json .git/bit
       - name: Display scope.json
         run: cat .git/bit/scope.json
       - name: Display bitmap
         run: cat .bitmap
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
       - name: Import from Remote Lane
         run: bit import
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
       - name: Switch to Main Lane and checkout latest
         run: bit lane switch main
       - name: Merge Lane to Main
         run: bit lane merge $SCOPE_NAME/$LANE_NAME
-      - name: Tag all Compomnents
+      - name: Tag all Components
         run: bit tag --patch
       - name: Export the Lane and the Components
         run: bit export
