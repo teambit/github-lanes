@@ -9,6 +9,12 @@
  */
 
 {
+    "ui/button": {
+        "scope": "teambit.github-lanes",
+        "version": "1.0.0",
+        "mainFile": "index.ts",
+        "rootDir": "github-lanes/button"
+    },
     "ui/time-ago": {
         "scope": "teambit.github-lanes",
         "version": "1.0.0",
