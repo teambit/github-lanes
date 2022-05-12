@@ -17,7 +17,7 @@
     },
     "ui/icon": {
         "scope": "teambit.github-lanes",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon",
         "lanes": [
@@ -33,7 +33,7 @@
     },
     "ui/icon-container": {
         "scope": "teambit.github-lanes",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon-container",
         "lanes": [
@@ -59,9 +59,5 @@
             }
         ]
     },
-    "$schema-version": "14.9.0",
-    "_bit_lane": {
-        "name": "change-color",
-        "scope": "teambit.github-lanes"
-    }
+    "$schema-version": "14.9.0"
 }
