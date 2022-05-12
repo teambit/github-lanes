@@ -24,6 +24,10 @@
             {
                 "remoteLane": "teambit.github-lanes/icon-design-update",
                 "version": "1165f24d6fb8db250b968466c6f93ed4bd718a41"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/change-color",
+                "version": "523833c4a7b2ce4958093386633bca2df6557644"
             }
         ]
     },
@@ -36,6 +40,10 @@
             {
                 "remoteLane": "teambit.github-lanes/icon-design-update",
                 "version": "ad26bc9b87e7f76557962c4476f6117ae0efb936"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/change-color",
+                "version": "e6d0b53d23f6ff6ca29ce870c902754f788ab1d7"
             }
         ]
     },
@@ -51,5 +59,9 @@
             }
         ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "change-color",
+        "scope": "teambit.github-lanes"
+    }
 }
