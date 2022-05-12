@@ -19,7 +19,17 @@
         "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/time-ago"
+        "rootDir": "github-lanes/ui/time-ago",
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/docs-update",
+                "version": "d4c991cfed8005f30f68c1d13daa8bfb66973512"
+            }
+        ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "docs-update",
+        "scope": "teambit.github-lanes"
+    }
 }
