@@ -19,13 +19,25 @@
         "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/icon"
+        "rootDir": "github-lanes/ui/icon",
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/icon-design-update",
+                "version": "1165f24d6fb8db250b968466c6f93ed4bd718a41"
+            }
+        ]
     },
     "ui/icon-container": {
         "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/icon-container"
+        "rootDir": "github-lanes/ui/icon-container",
+        "lanes": [
+            {
+                "remoteLane": "teambit.github-lanes/icon-design-update",
+                "version": "ad26bc9b87e7f76557962c4476f6117ae0efb936"
+            }
+        ]
     },
     "ui/time-ago": {
         "scope": "teambit.github-lanes",
@@ -39,5 +51,9 @@
             }
         ]
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "14.9.0",
+    "_bit_lane": {
+        "name": "icon-design-update",
+        "scope": "teambit.github-lanes"
+    }
 }
