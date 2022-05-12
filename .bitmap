@@ -16,13 +16,13 @@
         "rootDir": "github-lanes/button"
     },
     "ui/icon": {
-        "scope": "",
+        "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon"
     },
     "ui/icon-container": {
-        "scope": "",
+        "scope": "teambit.github-lanes",
         "version": "1.0.0",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon-container"
