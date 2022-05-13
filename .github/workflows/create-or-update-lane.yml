@@ -24,6 +24,7 @@ jobs:
     steps:
       - name: Display Gihtub Event
         run: |
+          echo ${{ toJSON(github) }}
           echo $PR_OPEN
           echo $PR_UPDATE
 
