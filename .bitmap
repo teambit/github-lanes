@@ -17,25 +17,33 @@
     },
     "ui/icon": {
         "scope": "teambit.github-lanes",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon",
         "lanes": [
             {
                 "remoteLane": "teambit.github-lanes/icon-design-update",
                 "version": "1165f24d6fb8db250b968466c6f93ed4bd718a41"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/change-color",
+                "version": "523833c4a7b2ce4958093386633bca2df6557644"
             }
         ]
     },
     "ui/icon-container": {
         "scope": "teambit.github-lanes",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "mainFile": "index.ts",
         "rootDir": "github-lanes/ui/icon-container",
         "lanes": [
             {
                 "remoteLane": "teambit.github-lanes/icon-design-update",
                 "version": "ad26bc9b87e7f76557962c4476f6117ae0efb936"
+            },
+            {
+                "remoteLane": "teambit.github-lanes/change-color",
+                "version": "e6d0b53d23f6ff6ca29ce870c902754f788ab1d7"
             }
         ]
     },
