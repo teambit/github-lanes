@@ -21,10 +21,6 @@ jobs:
       PR_OPEN: ${{ github.event.pull_request.head.ref }} != ''
       PR_UPDATE: ${{ github.ref_name }} != ''
 
-    outputs:
-      pr_open: ${{ PR_OPEN }}
-      pr_update: ${{ PR_UPDATE }}
-
     steps:
       - name: Display Gihtub Event
         run: |
