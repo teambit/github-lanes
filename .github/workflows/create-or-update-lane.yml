@@ -19,7 +19,7 @@ jobs:
 
     env:
       PR_OPEN: ${{ github.event_name == 'pull_request' }} 
-      PR_UPDATE: ${{ github.event != '' }} 
+      PR_UPDATE: ${{ github.event_name == 'push' }} 
       GITHUB: ${{ toJSON(github) }}
     steps:
       - name: Display Gihtub Event
