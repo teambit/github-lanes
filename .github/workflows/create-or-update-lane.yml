@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PR_OPEN: ${{ github.event.pull_request.head.ref != NULL }} 
-      PR_UPDATE: ${{ github.ref_name != NULL }} 
+      PR_OPEN: ${{ github.event.pull_request.head.ref != '' }} 
+      PR_UPDATE: ${{ github.ref_name != '' }} 
 
     steps:
       - name: Display Gihtub Event
