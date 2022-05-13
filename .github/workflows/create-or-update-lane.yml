@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PR_OPEN: ${{ github.event.pull_request.head.ref != '' }} 
-      PR_UPDATE: ${{ github.ref_name != '' }} 
-
+      PR_OPEN: ${{ github.event_name == 'pull_request' }} 
+      PR_UPDATE: ${{ github.event != '' }} 
+      GITHUB: ${{ toJSON(github) }}
     steps:
       - name: Display Gihtub Event
         run: |
-          echo ${{ toJSON(github) }}
+          echo $GITHUB
           echo $PR_OPEN
           echo $PR_UPDATE
 
