@@ -2,7 +2,7 @@ name: Create or Update Lane
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, reopened]
     branches:
       - main
   push:
@@ -18,12 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PR_OPEN: ${{ github.event.pull_request.head.ref }} != ''
-      PR_UPDATE: ${{ github.ref_name }} != ''
-
-    outputs:
-      pr_open: ${{ PR_OPEN }}
-      pr_update: ${{ PR_UPDATE }}
+      PR_OPEN: ${{ github.event.pull_request.head.ref != '' }} 
+      PR_UPDATE: ${{ github.ref_name != '' }} 
 
     steps:
       - name: Display Gihtub Event
