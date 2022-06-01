@@ -14,13 +14,13 @@ importers:
       '@teambit/documenter.ui.separator': 4.1.1
       '@testing-library/react': 11.2.6
       '@types/classnames': 2.2.11
-      '@types/jest': 26.0.20
+      '@types/jest': '>=26.0.0 <27.0.0'
       '@types/node': 12.20.4
-      '@types/react': ^17.0.8
-      '@types/react-dom': ^17.0.5
+      '@types/react': '>=17.0.8 <18.0.0'
+      '@types/react-dom': '>=17.0.5 <18.0.0'
       '@types/testing-library__jest-dom': 5.9.5
       classnames: 2.2.6
-      core-js: ^3.0.0
+      core-js: '>=3.0.0 <4.0.0'
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0
       react-test-renderer: 16.14.0
@@ -28,6 +28,7 @@ importers:
       '@teambit/base-ui.utils.time-ago': registry.npmjs.org/@teambit/base-ui.utils.time-ago/1.0.0_react-dom@17.0.2+react@17.0.2
       '@teambit/design.embeds.figma': registry.npmjs.org/@teambit/design.embeds.figma/0.0.6_react-dom@17.0.2+react@17.0.2
       '@testing-library/react': registry.npmjs.org/@testing-library/react/11.2.6_react-dom@17.0.2+react@17.0.2
+      '@types/classnames': registry.npmjs.org/@types/classnames/2.2.11
       classnames: registry.npmjs.org/classnames/2.2.6
       core-js: registry.npmjs.org/core-js/3.22.5
       react: registry.npmjs.org/react/17.0.2
@@ -39,8 +40,7 @@ importers:
       '@teambit/documenter.ui.paragraph': registry.npmjs.org/@teambit/documenter.ui.paragraph/4.1.1_react-dom@17.0.2+react@17.0.2
       '@teambit/documenter.ui.section': registry.npmjs.org/@teambit/documenter.ui.section/4.1.1_react-dom@17.0.2+react@17.0.2
       '@teambit/documenter.ui.separator': registry.npmjs.org/@teambit/documenter.ui.separator/4.1.1_react-dom@17.0.2+react@17.0.2
-      '@types/classnames': registry.npmjs.org/@types/classnames/2.2.11
-      '@types/jest': registry.npmjs.org/@types/jest/26.0.20
+      '@types/jest': registry.npmjs.org/@types/jest/26.0.24
       '@types/node': registry.npmjs.org/@types/node/12.20.4
       '@types/react': registry.npmjs.org/@types/react/17.0.45
       '@types/react-dom': registry.npmjs.org/@types/react-dom/17.0.16
@@ -48,6 +48,12 @@ importers:
       react-test-renderer: registry.npmjs.org/react-test-renderer/16.14.0_react@17.0.2
 
   github-lanes/button:
+    specifiers: {}
+
+  github-lanes/ui/icon:
+    specifiers: {}
+
+  github-lanes/ui/icon-container:
     specifiers: {}
 
   github-lanes/ui/time-ago:
@@ -487,7 +493,7 @@ packages:
     resolution: {integrity: sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw==, registry: https://node.bit.dev/, tarball: https://registry.npmjs.org/@types/classnames/-/classnames-2.2.11.tgz}
     name: '@types/classnames'
     version: 2.2.11
-    dev: true
+    dev: false
 
   registry.npmjs.org/@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==, registry: https://node.bit.dev/, tarball: https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz}
@@ -507,15 +513,6 @@ packages:
     version: 3.0.1
     dependencies:
       '@types/istanbul-lib-report': registry.npmjs.org/@types/istanbul-lib-report/3.0.0
-
-  registry.npmjs.org/@types/jest/26.0.20:
-    resolution: {integrity: sha512-9zi2Y+5USJRxd0FsahERhBwlcvFh6D2GLQnY2FH2BzK8J9s9omvNHIbvABwIluXa0fD8XVKMLTO0aOEuUfACAA==, registry: https://node.bit.dev/, tarball: https://registry.npmjs.org/@types/jest/-/jest-26.0.20.tgz}
-    name: '@types/jest'
-    version: 26.0.20
-    dependencies:
-      jest-diff: registry.npmjs.org/jest-diff/26.6.2
-      pretty-format: registry.npmjs.org/pretty-format/26.6.2
-    dev: true
 
   registry.npmjs.org/@types/jest/26.0.24:
     resolution: {integrity: sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==, registry: https://node.bit.dev/, tarball: https://registry.npmjs.org/@types/jest/-/jest-26.0.24.tgz}
