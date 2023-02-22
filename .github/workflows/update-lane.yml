@@ -2,7 +2,7 @@ name: Update Lane
 
 on:
   pull_request:
-    push:
+    types: [edited]
       branches-ignore:    
         - main
       paths-ignore:
