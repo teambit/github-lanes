@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     needs: [verify_lane_has_been_exported]  
 
@@ -106,7 +106,9 @@ jobs:
       - name: Install Bit Version Manager
         run: npm i -g @teambit/bvm
       - name: Install latest Bit version
-        run: bvm install
+        run: |
+          bvm config set RELEASE_TYPE nightly
+          bvm install
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - name: Set up bit config

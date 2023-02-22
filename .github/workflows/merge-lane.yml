@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     needs: [verify_lane_has_been_exported]  
 
@@ -107,7 +107,9 @@ jobs:
       - name: Install Bit Version Manager
         run: npm i -g @teambit/bvm
       - name: Install latest Bit version
-        run: bvm install
+        run: |
+          bvm config set RELEASE_TYPE nightly
+          bvm install
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - name: Set up bit config
@@ -146,8 +148,10 @@ jobs:
         run: bit tag --patch
       - name: Export the Lane and the Components
         run: bit export
-      - name: Commit .bitmap changes to PR
+      - name: delete .bitmap
+        run: rm -rf .bitmap
+      - name: remove .bitmap from pr
         uses: EndBug/add-and-commit@v9
         with:
           push: true
-          message: 'update .bitmap after merging'
+          message: 'remove .bitmap after merging'

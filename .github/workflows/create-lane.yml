@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       - name: Use Node.js ${{ matrix.node-version }}
@@ -61,8 +61,11 @@ jobs:
     steps:
       - name: Install Bit Version Manager
         run: npm i -g @teambit/bvm
+      # using nightly for the pnpm fix
       - name: Install latest Bit version
-        run: bvm install
+        run: |
+          bvm config set RELEASE_TYPE nightly
+          bvm install
       - name: add bvm bin folder to path
         run: echo "$HOME/bin" >> $GITHUB_PATH
       - name: Set up bit config
@@ -78,9 +81,9 @@ jobs:
       - name: Create Local Lane
         run: bit lane create $LANE_NAME
       - name: Install and Compile
-        run: bit install && bit compile
+        run: bit install
       - name: Snap All Components without building them
-        run: bit snap
+        run: bit snap --message "TODO - grab git-message"
       - name: Export the Lane and the Components
         run: bit export > .git/export_output.txt
       - name: Display bit export output

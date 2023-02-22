@@ -9,55 +9,29 @@
  */
 
 {
-    "ui/button": {
-        "scope": "teambit.github-lanes",
-        "version": "1.0.0",
+    "elements/button": {
+        "scope": "",
+        "version": "",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/button"
-    },
-    "ui/icon": {
-        "scope": "teambit.github-lanes",
-        "version": "1.0.2",
-        "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/icon",
-        "lanes": [
-            {
-                "remoteLane": "teambit.github-lanes/icon-design-update",
-                "version": "1165f24d6fb8db250b968466c6f93ed4bd718a41"
-            },
-            {
-                "remoteLane": "teambit.github-lanes/change-color",
-                "version": "523833c4a7b2ce4958093386633bca2df6557644"
+        "rootDir": "lanes-automation/elements/button",
+        "config": {
+            "teambit.react/react-env@0.0.40": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react-env"
             }
-        ]
+        }
     },
-    "ui/icon-container": {
-        "scope": "teambit.github-lanes",
-        "version": "1.0.2",
+    "styles/colors": {
+        "scope": "",
+        "version": "",
         "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/icon-container",
-        "lanes": [
-            {
-                "remoteLane": "teambit.github-lanes/icon-design-update",
-                "version": "ad26bc9b87e7f76557962c4476f6117ae0efb936"
-            },
-            {
-                "remoteLane": "teambit.github-lanes/change-color",
-                "version": "e6d0b53d23f6ff6ca29ce870c902754f788ab1d7"
+        "rootDir": "lanes-automation/styles/colors",
+        "config": {
+            "teambit.node/node@0.0.10": {},
+            "teambit.envs/envs": {
+                "env": "teambit.node/node"
             }
-        ]
+        }
     },
-    "ui/time-ago": {
-        "scope": "teambit.github-lanes",
-        "version": "1.0.1",
-        "mainFile": "index.ts",
-        "rootDir": "github-lanes/ui/time-ago",
-        "lanes": [
-            {
-                "remoteLane": "teambit.github-lanes/docs-update",
-                "version": "d4c991cfed8005f30f68c1d13daa8bfb66973512"
-            }
-        ]
-    },
-    "$schema-version": "14.9.0"
+    "$schema-version": "15.0.0"
 }
