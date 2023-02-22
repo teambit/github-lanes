@@ -1,13 +1,12 @@
 name: Update Lane
 
 on:
-  pull_request:
-    types: [edited]
-      branches-ignore:    
-        - main
-      paths-ignore:
-        - '.github/*'
-        - .gitignore
+  push:
+    branches-ignore:    
+      - main
+    paths-ignore:
+      - '.github/*'
+      - .gitignore
 
 jobs:
   setup_npm:
