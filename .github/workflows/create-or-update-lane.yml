@@ -26,7 +26,7 @@ jobs:
       - uses: teambit/setup-action@v2.02
         with:
           name: angular-github-actions
-          BIT_TOKEN: ${{ env.BIT_TOKEN }}
+          BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
 
       - uses: actions/checkout@v3
         with:
