@@ -16,17 +16,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      BIT_TOKEN: ${{ env.BIT_TOKEN }}
-      LANE_NAME: ${{ github.head_ref || github.ref_name }}
-
     container:
       image: docker://bitcli/bit:latest-node-16.15.0
     steps:
       - uses: teambit/setup-action@v2.02
         with:
           name: Set up Bit
-          BIT_TOKEN: ${{ env.BIT_TOKEN }}
+          BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
 
       - uses: actions/checkout@v3
         with:
@@ -36,11 +32,11 @@ jobs:
         run: bit install
       
       - name: Create Local Lane
-        run: bit lane create $LANE_NAME
+        run: bit lane create ${{ github.head_ref || github.ref_name }}
 
       - name: Switch to existing lane
         if: ${{ failure() }}
-        run: bit lane switch $LANE_NAME
+        run: bit lane switch ${{ github.head_ref || github.ref_name }}
 
       - name: Snap All Components without building them
         run: |
