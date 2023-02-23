@@ -74,11 +74,11 @@ jobs:
         run: bit install
       
       - name: Create Local Lane
-        run: bit lane create $LANE_NAME
+        run: bit lane create ${{ github.event.pull_request.head.ref }}
 
       - name: Switch to existing lane
         if: ${{ failure() }}
-        run: bit lane switch $LANE_NAME
+        run: bit lane switch ${{ github.event.pull_request.head.ref }}
 
       - name: Snap All Components without building them
         run: |
