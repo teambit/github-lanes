@@ -47,9 +47,7 @@ jobs:
           bit checkout head
           bit snap --message "TODO - grab git-message"
       - name: Export the Lane and the Components
-        run: |
-          bit export > .git/export_output.txt
-          cat .git/export_output.txt
+        run: bit export
   
       - name: Commit .bitmap changes to PR
         uses: EndBug/add-and-commit@v9
