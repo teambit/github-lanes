@@ -18,6 +18,7 @@ jobs:
 
     env:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
+      LANE_NAME: ${{ github.head_ref || github.ref_name }}
 
     container:
       image: docker://bitcli/bit:latest-node-16.15.0
@@ -25,7 +26,7 @@ jobs:
       - uses: teambit/setup-action@v2.02
         with:
           name: Set up Bit
-          BIT_TOKEN: $BIT_TOKEN
+          BIT_TOKEN: ${{ BIT_TOKEN }}
 
       - uses: actions/checkout@v3
         with:
