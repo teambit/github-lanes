@@ -25,23 +25,29 @@ jobs:
         with:
           name: Set up Bit
           BIT_TOKEN: ${{ env.BIT_TOKEN }}
-
       - uses: actions/checkout@v3
+        name: Checkout main branch
         with:
           ref: main
-      - name: Import from Remote Lane
-        run: bit import
 
+      - name: Merge changes from main to my lane
+        run: bit lane merge main
       - name: Switch to Main Lane and checkout latest
         run: bit lane switch main
       - name: Merge Lane to Main
-        run: bit lane merge $SCOPE_NAME/$LANE_NAME
-      - name: Tag all Components
-        run: bit tag --patch
+        run: bit lane merge $LANE_NAME
+
+      - name: Install dependencies
+        run: bit install
+
+      - name: Tag merged components
+        run: bit tag --message "${{ github.event.head_commit.message }}"
       - name: Export the Lane and the Components
         run: bit export
       - name: delete .bitmap
-        run: TODO - need to find a way to paste the state of an empty .bitmap here.
+        run: |
+          rm -rf .bitmap
+          bit init
       - name: empty .bitmap from pr
         uses: EndBug/add-and-commit@v9
         with:

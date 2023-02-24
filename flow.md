@@ -1,5 +1,6 @@
 Repo initial state:
 
+- only contains components from a single scope
 - All components code and files
 - workspace.jsonc with configuration
 - Has pnpm-lock file

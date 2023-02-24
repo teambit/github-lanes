@@ -33,5 +33,12 @@
             }
         }
     },
-    "$schema-version": "15.0.0"
+    "$schema-version": "15.0.0",
+    "_bit_lane": {
+        "id": {
+            "name": "hi",
+            "scope": "learnbit.lanes-automation"
+        },
+        "exported": false
+    }
 }
