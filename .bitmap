@@ -11,7 +11,7 @@
 {
     "elements/button": {
         "scope": "itaysso.test-lanes",
-        "version": "9dc61e75e6fb876f422101d70bdf95c13be8d5c0",
+        "version": "f1d063961219669dc95cdfee8c72844579a444c8",
         "mainFile": "index.ts",
         "rootDir": "lanes-automation/elements/button",
         "onLanesOnly": true,
