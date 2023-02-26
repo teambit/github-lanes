@@ -27,7 +27,7 @@
     /**
      * default scope for all components in workspace.
      **/
-    "defaultScope": "learnbit.lanes-automation"
+    "defaultScope": "itaysso.test-lanes"
   },
   /**
    * main configuration for component dependency resolution.

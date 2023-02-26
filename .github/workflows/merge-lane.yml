@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: teambit/setup-action@v2.02
         with:
-          name: Set up Bit
+          name: github-actions
           BIT_TOKEN: ${{ env.BIT_TOKEN }}
       - uses: actions/checkout@v3
         name: Checkout main branch
@@ -44,7 +44,7 @@ jobs:
         run: bit tag --message "${{ github.event.head_commit.message }}"
       - name: Export the Lane and the Components
         run: bit export
-      - name: delete .bitmap
+      - name: Clear .bitmap contents
         run: |
           rm -rf .bitmap
           bit init
