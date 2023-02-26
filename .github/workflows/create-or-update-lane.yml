@@ -25,8 +25,8 @@ jobs:
     steps:
       - uses: teambit/setup-action@v2.02
         with:
-          name: Set up Bit
-          BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
+          name: angular-github-actions
+          BIT_TOKEN: ${{ env.BIT_TOKEN }}
 
       - uses: actions/checkout@v3
         name: Checkout git branch
