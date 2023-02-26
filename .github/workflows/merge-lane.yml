@@ -7,147 +7,49 @@ on:
       - main
 
 jobs:
-  setup_npm:
 
-    name: setup npm
 
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [15.x]
-
-    needs: [verify_lane_has_been_exported]  
-
-    if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
-
-    steps:
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
-  extract_local_lane_name:
-
-    name: extract local lane name
-
-    runs-on: ubuntu-latest
-
-    # if: startsWith(github.event.pull_request.head.ref,  'components/') && github.event.pull_request.merged == true
-    if: github.event.pull_request.merged == true
-
-    outputs: 
-      extracted: ${{ steps.extract.outputs.replaced }}
-
-    steps:
-      - name: Replace illegal characters from head branch name
-        id: extract
-        uses: frabert/replace-string-action@v2.0
-        with:
-          pattern: '/'
-          string: ${{ github.event.pull_request.head.ref }}
-          replace-with: '-'
-          flags: 'g'
-
-  verify_lane_has_been_exported:
-
-    name: verify lane has been exported
-
-    runs-on: ubuntu-latest
-
-    needs: [extract_local_lane_name]  
-
-    env:
-      LANE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}  
-      LANE_ARTIFACT_FILE_NAME: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope.txt
-
-    outputs:
-      lane_scope: ${{ steps.lane_artifact.outputs.scope }}
-      lane_name: ${{ needs.extract_local_lane_name.outputs.extracted }}
-
-    steps:
-      - name: Download Lane Artifact
-        uses: dawidd6/action-download-artifact@v2
-        with: 
-          name: ${{ needs.extract_local_lane_name.outputs.extracted }}_scope
-          workflow: create-lane.yml
-          check_artifacts: true
-      - id: lane_artifact
-        run: |
-          scopeName=$(head -1 $LANE_ARTIFACT_FILE_NAME);
-          echo ::set-output name=scope::$scopeName
-
-      - name: Display Lane Scope
-        run: echo ${{ steps.lane_artifact.outputs.scope }}
-
-      - name: Display Lane Scope JSON
-        run: tail -n +2 $LANE_ARTIFACT_FILE_NAME > scope.json
-
-      - name: Upload scope.json as an artifact for the next job
-        uses: actions/upload-artifact@v3
-        with:
-          name: scope_json
-          path: scope.json
-      
   merge_and_export_lane:
     name: merge and export lane
 
     runs-on: ubuntu-latest
 
-    needs: [setup_npm, verify_lane_has_been_exported]
-
     env:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
-      LANE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_name }} 
-      SCOPE_NAME: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope }}
+      LANE_NAME: ${{ github.head_ref || github.ref_name }}
 
-    if: ${{ needs.verify_lane_has_been_exported.outputs.lane_scope != '' }}
-
+    container:
+      image: docker://bitcli/bit:latest-node-16.15.0
     steps:
-      - name: Install Bit Version Manager
-        run: npm i -g @teambit/bvm
-      - name: Install latest Bit version
-        run: bvm install
-      - name: add bvm bin folder to path
-        run: echo "$HOME/bin" >> $GITHUB_PATH
-      - name: Set up bit config
-        run: |
-          bit config set analytics_reporting false
-          bit config set anonymous_reporting false
-          bit config set user.token $BIT_TOKEN
-      - name: add bvm bin folder to path
-        run: echo "$HOME/bin" >> $GITHUB_PATH
+      - uses: teambit/setup-action@v2.02
+        with:
+          name: github-actions
+          BIT_TOKEN: ${{ env.BIT_TOKEN }}
       - uses: actions/checkout@v3
+        name: Checkout main branch
         with:
           ref: main
-      - uses: actions/download-artifact@v3
-        with:
-          name: scope_json
-          path: .
-      - name: Initialize Bit repo
-        run: bit init
-      - name: Update from Main
-        run: bit import
-      - name: Update Local scope.json
-        run: rm .git/bit/scope.json && mv scope.json .git/bit
-      - name: Display scope.json
-        run: cat .git/bit/scope.json
-      - name: Display bitmap
-        run: cat .bitmap
-      - name: Import from Remote Lane
-        run: bit import
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
+
+      - name: Merge changes from main to my lane
+        run: bit lane merge main
       - name: Switch to Main Lane and checkout latest
         run: bit lane switch main
       - name: Merge Lane to Main
-        run: bit lane merge $SCOPE_NAME/$LANE_NAME
-      - name: Tag all Components
-        run: bit tag --patch
+        run: bit lane merge $LANE_NAME
+
+      - name: Install dependencies
+        run: bit install
+
+      - name: Tag merged components
+        run: bit tag --message "${{ github.event.head_commit.message }}"
       - name: Export the Lane and the Components
         run: bit export
-      - name: Commit .bitmap changes to PR
+      - name: Clear .bitmap contents
+        run: |
+          rm -rf .bitmap
+          bit init
+      - name: empty .bitmap from pr
         uses: EndBug/add-and-commit@v9
         with:
           push: true
-          message: 'update .bitmap after merging'
+          message: 'remove .bitmap after merging'

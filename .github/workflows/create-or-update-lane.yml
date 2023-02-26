@@ -1,0 +1,55 @@
+name: Create Lane
+
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - main
+  push:
+    branches-ignore:    
+      - main
+
+jobs:
+
+  create_or_update_lane_and_export:
+    name: create and export lane
+
+    runs-on: ubuntu-latest
+
+    env:
+      BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
+      LANE_NAME: ${{ github.head_ref || github.ref_name }}
+
+    container:
+      image: docker://bitcli/bit:latest-node-16.15.0
+    steps:
+      - uses: teambit/setup-action@v2.02
+        with:
+          name: github-actions
+          BIT_TOKEN: ${{ env.BIT_TOKEN }}
+
+      - uses: actions/checkout@v3
+        name: Checkout git branch
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install and compile components
+        run: bit install
+      
+      - name: Create Local Lane
+      # using some basic bash tricks... lets hope gh-actions can take this
+        run: bit lane create $LANE_NAME || echo "already on a lane"
+
+      - name: Snap All Components without building them
+        run: |
+          bit checkout head
+          bit snap --message "${{ github.event.head_commit.message }}"
+
+      - name: Export the Lane and the Components
+        run: bit export
+  
+      - name: Commit .bitmap changes to PR
+        uses: EndBug/add-and-commit@v9
+        with:
+          push: true
+          message: 'update .bitmap'
