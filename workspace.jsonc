@@ -44,6 +44,9 @@
     }
   },
   "teambit.generator/generator": {
-    "envs": ["teambit.react/react-env", "teambit.node/node"]
+    "envs": [
+      "teambit.react/react-env",
+      "teambit.node/node"
+    ]
   }
 }

@@ -10,28 +10,27 @@
 
 {
     "elements/button": {
-        "scope": "",
-        "version": "",
+        "scope": "itaysso.test-lanes",
+        "version": "9dc61e75e6fb876f422101d70bdf95c13be8d5c0",
         "mainFile": "index.ts",
         "rootDir": "lanes-automation/elements/button",
-        "config": {
-            "teambit.react/react-env@0.0.40": {},
-            "teambit.envs/envs": {
-                "env": "teambit.react/react-env"
-            }
-        }
+        "onLanesOnly": true,
+        "isAvailableOnCurrentLane": true
     },
     "styles/colors": {
-        "scope": "",
-        "version": "",
+        "scope": "itaysso.test-lanes",
+        "version": "ce465f36b9d1e611acb57beefff42b10b3ef9379",
         "mainFile": "index.ts",
         "rootDir": "lanes-automation/styles/colors",
-        "config": {
-            "teambit.node/node@0.0.10": {},
-            "teambit.envs/envs": {
-                "env": "teambit.node/node"
-            }
-        }
+        "onLanesOnly": true,
+        "isAvailableOnCurrentLane": true
     },
-    "$schema-version": "15.0.0"
+    "$schema-version": "15.0.0",
+    "_bit_lane": {
+        "id": {
+            "name": "third-go",
+            "scope": "itaysso.test-lanes"
+        },
+        "exported": true
+    }
 }
